@@ -1,0 +1,21 @@
+[submodule "bundle/nerdtree"]
+	path = bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule "bundle/command-t"]
+	path = bundle/command-t
+	url = git://git.wincent.com/command-t.git
+[submodule "bundle/jellybeans.vim"]
+	path = bundle/jellybeans.vim
+	url = https://github.com/nanotech/jellybeans.vim.git
+[submodule "bundle/nerdcommenter"]
+	path = bundle/nerdcommenter
+	url = https://github.com/scrooloose/nerdcommenter.git
+[submodule "bundle/ack.vim"]
+	path = bundle/ack.vim
+	url = https://github.com/mileszs/ack.vim.git
+[submodule "bundle/snipmate.vim"]
+	path = bundle/snipmate.vim
+	url = https://github.com/msanders/snipmate.vim.git
+[submodule "bundle/yankring"]
+	path = bundle/yankring
+	url = https://github.com/chrismetcalf/vim-yankring.git
