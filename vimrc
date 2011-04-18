@@ -108,6 +108,11 @@ filetype plugin indent on
 set nocompatible
 set modelines=0
 
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+
 set encoding=utf-8
 set scrolloff=3
 set autoindent
@@ -139,10 +144,11 @@ nnoremap <leader><space> :noh<cr>
 nnoremap <tab> %
 vnoremap <tab> %
 
-set wrap
+"set wrap
 "set textwidth=79
-set formatoptions=qrn1
+"set formatoptions=qrn1
 set colorcolumn=110
+"hi ColorColumn guibg=#444444
 
 set list
 set listchars=tab:▸\ ,eol:¬
@@ -172,5 +178,41 @@ nnoremap <C-l> <C-w>l
 
 nnoremap ; :
 
-colors molokai
+au FocusLost * :wa
+
+
+" From Caleb's vimrc
+
+hi ColorColumn ctermbg=darkgray
+
+let g:NERDTreeChDirMode=2
+let g:NERDChristmasTree=1
+nmap <leader>T :NERDTreeToggle<CR>
+
+" Change where we store swap/undo files
+set dir=~/.vim/tmp/swap//
+set backupdir=~/.vim/tmp/backup//
+set undodir=~/.vim/tmp/undo/
+
+set clipboard=unnamed
+
+
+" All new
+
+set t_Co=16
+set background=dark
+colors ir_black
+
+let g:CommandTMaxFiles=100000
+let g:CommandTAlwaysShowDotFiles=1
+let g:CommandTMaxHeight=20
+
+" From http://stackoverflow.com/questions/2968548/vim-return-to-command-mode-when-focus-is-lost
+autocmd FocusLost,TabLeave * call PopOutOfInsertMode()
+function! PopOutOfInsertMode()
+  if v:insertmode
+    feedkeys("\<C-\>\<C-n>")
+  endif
+endfunction
+
 

@@ -19,3 +19,6 @@
 [submodule "bundle/yankring"]
 	path = bundle/yankring
 	url = https://github.com/chrismetcalf/vim-yankring.git
+[submodule "bundle/actionscript-syntax"]
+	path = bundle/actionscript-syntax
+	url = https://github.com/vim-scripts/actionscript.vim--Cuss.git
