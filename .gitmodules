@@ -22,3 +22,12 @@
 [submodule "bundle/actionscript-syntax"]
 	path = bundle/actionscript-syntax
 	url = https://github.com/vim-scripts/actionscript.vim--Cuss.git
+[submodule "bundle/autoclose"]
+	path = bundle/autoclose
+	url = https://github.com/Townk/vim-autoclose.git
+[submodule "bundle/gundo"]
+	path = bundle/gundo
+	url = http://github.com/sjl/gundo.vim.git
+[submodule "bundle/surround"]
+	path = bundle/surround
+	url = https://github.com/tpope/vim-surround.git
