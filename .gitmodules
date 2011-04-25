@@ -31,3 +31,9 @@
 [submodule "bundle/surround"]
 	path = bundle/surround
 	url = https://github.com/tpope/vim-surround.git
+[submodule "bundle/mxml-syntax"]
+	path = bundle/mxml-syntax
+	url = https://github.com/cespare/mxml.vim.git
+[submodule "bundle/dtd-syntax"]
+	path = bundle/dtd-syntax
+	url = https://github.com/cespare/dtd.vim.git
