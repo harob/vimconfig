@@ -215,4 +215,8 @@ function! PopOutOfInsertMode()
   endif
 endfunction
 
+" Ensure the temp dirs exist¬
+call system("mkdir -p ~/.vim/tmp/swap")¬
+call system("mkdir -p ~/.vim/tmp/backup")¬
+call system("mkdir -p ~/.vim/tmp/undo")¬
 
