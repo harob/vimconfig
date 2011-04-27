@@ -37,3 +37,9 @@
 [submodule "bundle/dtd-syntax"]
 	path = bundle/dtd-syntax
 	url = https://github.com/cespare/dtd.vim.git
+[submodule "bundle/indent-object"]
+	path = bundle/indent-object
+	url = https://github.com/michaeljsmith/vim-indent-object.git
+[submodule "bundle/matchit"]
+	path = bundle/matchit
+	url = https://github.com/tsaleh/vim-matchit.git
