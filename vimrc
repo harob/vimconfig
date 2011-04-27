@@ -178,7 +178,7 @@ nnoremap <C-l> <C-w>l
 
 nnoremap ; :
 
-au FocusLost * :wa
+"au FocusLost * :wa
 
 
 " From Caleb's vimrc
