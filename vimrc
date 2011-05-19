@@ -181,7 +181,7 @@ nnoremap ; :
 "au FocusLost * :wa
 
 
-" From Caleb's vimrc
+" From Caleb's vimrc at https://github.com/cespare/vim-config
 
 hi ColorColumn ctermbg=darkgray
 
@@ -195,6 +195,72 @@ set backupdir=~/.vim/tmp/backup//
 set undodir=~/.vim/tmp/undo/
 
 set clipboard=unnamed
+
+" I don't use s and S in normal mode much. Let's make them do something useful
+" * s will break the line at the current spot and move it down.
+" * S is the same, but moves it up.
+nnoremap s i<CR><ESC>==
+nnoremap S d$O<ESC>p==
+
+
+" From http://amix.dk/vim/vimrc.html
+
+"  In visual mode when you press * or # to search for the current selection
+vnoremap <silent> * :call VisualSearch('f')<CR>
+vnoremap <silent> # :call VisualSearch('b')<CR>
+
+" When you press gv you vimgrep after the selected text
+vnoremap <silent> gv :call VisualSearch('gv')<CR>
+
+function! CmdLine(str)
+    exe "menu Foo.Bar :" . a:str
+    emenu Foo.Bar
+    unmenu Foo
+endfunction
+
+" From an idea by Michael Naumann
+function! VisualSearch(direction) range
+    let l:saved_reg = @"
+    execute "normal! vgvy"
+
+    let l:pattern = escape(@", '\\/.*$^~[]')
+    let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+    if a:direction == 'b'
+        execute "normal ?" . l:pattern . "^M"
+    elseif a:direction == 'gv'
+        call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.')
+    elseif a:direction == 'f'
+        execute "normal /" . l:pattern . "^M"
+    endif
+
+    let @/ = l:pattern
+    let @" = l:saved_reg
+endfunction
+
+" Bash like keys for the command line
+cnoremap <C-A>      <Home>
+cnoremap <C-E>      <End>
+cnoremap <C-K>      <C-U>
+
+" Always show the statusline
+set laststatus=2
+
+" Format the statusline
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h%=%c\ :\ %l\ /\ %L,\ %P
+
+function! CurDir()
+    let curdir = substitute(getcwd(), '/Users/harry/', "~/", "g")
+    return curdir
+endfunction
+
+function! HasPaste()
+    if &paste
+        return '*PASTE MODE*  '
+    else
+        return ''
+    endif
+endfunction
 
 
 " All new
@@ -219,5 +285,8 @@ endfunction
 call system("mkdir -p ~/.vim/tmp/swap")
 call system("mkdir -p ~/.vim/tmp/backup")
 call system("mkdir -p ~/.vim/tmp/undo")
+
+" Turn off annoying bak files
+set nobackup
 
 
