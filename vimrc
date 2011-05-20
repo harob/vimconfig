@@ -167,7 +167,7 @@ nnoremap j gj
 nnoremap k gk
 
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR> " Remove trailing whitespace
-nnoremap <leader>a :Ack
+nnoremap <leader>a :Ack 
 nnoremap <leader>w <C-w>v<C-w>l " Open a new pane and go to it
 
 " Navigate between panes
@@ -247,7 +247,7 @@ cnoremap <C-K>      <C-U>
 set laststatus=2
 
 " Format the statusline
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h%=%c\ :\ %l\ /\ %L,\ %P
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ %=\ %c\ :\ %l\ /\ %L,\ %P
 
 function! CurDir()
     let curdir = substitute(getcwd(), '/Users/harry/', "~/", "g")
