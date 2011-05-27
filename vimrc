@@ -282,9 +282,11 @@ function! PopOutOfInsertMode()
 endfunction
 
 " Ensure the temp dirs exist¬
-call system("mkdir -p ~/.vim/tmp/swap")
-call system("mkdir -p ~/.vim/tmp/backup")
-call system("mkdir -p ~/.vim/tmp/undo")
+if !isdirectory($HOME . "/.vim/tmp")
+  call system("mkdir -p ~/.vim/tmp/swap")
+  call system("mkdir -p ~/.vim/tmp/backup")
+  call system("mkdir -p ~/.vim/tmp/undo")
+endif
 
 " Turn off annoying bak files
 set nobackup
