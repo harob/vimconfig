@@ -67,3 +67,6 @@
 [submodule "bundle/screen"]
 	path = bundle/screen
 	url = https://github.com/ervandew/screen.git
+[submodule "bundle/VimClojure"]
+	path = bundle/VimClojure
+	url = https://github.com/vim-scripts/VimClojure.git
