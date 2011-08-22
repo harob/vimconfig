@@ -70,3 +70,15 @@
 [submodule "bundle/VimClojure"]
 	path = bundle/VimClojure
 	url = https://github.com/vim-scripts/VimClojure.git
+[submodule "bundle/less-syntax"]
+	path = bundle/less-syntax
+	url = https://github.com/jkimbo/vim-less.git
+[submodule "bundle/loremipsum"]
+	path = bundle/loremipsum
+	url = https://github.com/vim-scripts/loremipsum.git
+[submodule "bundle/css_color"]
+	path = bundle/css_color
+	url = https://github.com/vim-scripts/css_color.vim.git
+[submodule "bundle/closetag"]
+	path = bundle/closetag
+	url = https://github.com/vim-scripts/closetag.vim.git
