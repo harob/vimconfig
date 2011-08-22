@@ -291,4 +291,8 @@ endif
 " Turn off annoying bak files
 set nobackup
 
-
+" Settings for VimClojure
+let vimclojure#HighlightBuiltins=1      " Highlight Clojure's builtins
+let vimclojure#ParenRainbow=1           " Rainbow parentheses'!
+" NOTE(harry) VimClojure is not currently set up to have the online 'Nailgun' functionality; see
+" http://blog.darevay.com/2010/10/how-i-tamed-vimclojure/ for set-up instructions.
