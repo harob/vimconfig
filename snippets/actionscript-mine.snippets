@@ -2,9 +2,20 @@ snippet todo
 	// TODO(harry) 
 snippet note
 	// NOTE(harry) 
+snippet fun
+	function():void { ${1} }${2}
+snippet context
+	context("${1}", function():void
+	{
+	  ${2}
+	});${3}
 snippet should
 	should("${1}", function():void
 	{
 	  ${2}
-	});
-
+	});${3}
+snippet setup
+	setup(function():void
+	{
+	  ${1}
+	});${2}
