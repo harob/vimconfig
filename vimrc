@@ -127,7 +127,10 @@ set ttyfast
 set ruler
 set backspace=indent,eol,start
 set laststatus=2
-set relativenumber
+" NOTE(harry) relative line numbers are a cool party trick, but I have  ultimately concluded that regular
+" line numbers better satisfy the most common use case.
+"set relativenumber
+set number
 set undofile
 
 let mapleader = ","
