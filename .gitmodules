@@ -88,3 +88,6 @@
 [submodule "bundle/coffeescript-syntax"]
 	path = bundle/coffeescript-syntax
 	url = https://github.com/kchmck/vim-coffee-script.git
+[submodule "bundle/scala-syntax"]
+	path = bundle/scala-syntax
+	url = https://github.com/rosstimson/scala-vim-support.git
