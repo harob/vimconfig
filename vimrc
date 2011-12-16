@@ -299,3 +299,15 @@ let vimclojure#HighlightBuiltins=1      " Highlight Clojure's builtins
 let vimclojure#ParenRainbow=1           " Rainbow parentheses'!
 " NOTE(harry) VimClojure is not currently set up to have the online 'Nailgun' functionality; see
 " http://blog.darevay.com/2010/10/how-i-tamed-vimclojure/ for set-up instructions.
+
+" Turn off annoying backup and swap files
+set nobackup
+set nowritebackup
+set noswapfile
+
+" Barkeep integration
+function! BarkeepForLine()
+  let ignoredoutput = system("git blame " . expand("%") . " -L " . line(".") . "," . line(".") .  "| cut -d' ' -f 1 | sed 's#^#http://barkeep.sv2/commits/'`git config remote.origin.url | xargs basename | sed 's/.git$//'`'/#' | xargs open")
+endfunction
+map <F6> :call BarkeepForLine()<CR>
+
