@@ -91,3 +91,6 @@
 [submodule "bundle/puppet-syntax"]
 	path = bundle/puppet-syntax
 	url = https://github.com/puppetlabs/puppet-syntax-vim.git
+[submodule "bundle/scala-syntax"]
+	path = bundle/scala-syntax
+	url = https://github.com/rosstimson/scala-vim-support.git
