@@ -4,5 +4,6 @@ augroup filetypedetect
   au BufNewFile,BufRead *.thrift setfiletype thrift " Thrift
   au BufNewFile,BufRead *.as setfiletype actionscript " Actionscript
   au BufNewFile,BufRead *.mxml setfiletype mxml " MXML files
+  au BufNewFile,BufRead *.md setfiletype markdown
 augroup END
 
