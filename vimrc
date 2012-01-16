@@ -272,7 +272,7 @@ set t_Co=16
 set background=dark
 colors ir_black
 
-let g:CommandTMaxFiles=100000
+let g:CommandTMaxFiles=40000
 let g:CommandTAlwaysShowDotFiles=1
 let g:CommandTMaxHeight=20
 
