@@ -156,7 +156,9 @@ set colorcolumn=110
 set list
 set listchars=tab:▸\ ,eol:¬
 
-inoremap hh <ESC>
+" Useful on boxes where there is no good alternative to the ESC button. A better solution is to use Caps Lock
+" as Ctrl when held down and ESC when tapped.
+"inoremap hh <ESC>
 
 nnoremap <up> <nop>
 nnoremap <down> <nop>
@@ -190,7 +192,7 @@ hi ColorColumn ctermbg=darkgray
 
 let g:NERDTreeChDirMode=2
 let g:NERDChristmasTree=1
-nmap <leader>T :NERDTreeToggle<CR>
+nmap <leader>n :NERDTreeToggle<CR>
 
 " Change where we store swap/undo files
 set dir=~/.vim/tmp/swap//
