@@ -173,7 +173,8 @@ nnoremap k gk
 
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR> " Remove trailing whitespace
 nnoremap <leader>a :Ack 
-nnoremap <leader>w <C-w>v<C-w>l " Open a new pane and go to it
+nnoremap <leader>v <C-w>v<C-w>l " Open a new vertical pane and go to it
+nnoremap <leader>h <C-w>s<C-w>j " Open a new horizontal pane and go to it
 
 " Navigate between panes
 nnoremap <C-h> <C-w>h
