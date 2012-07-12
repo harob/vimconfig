@@ -297,11 +297,14 @@ endif
 " Turn off annoying bak files
 set nobackup
 
-" Settings for VimClojure
-let vimclojure#HighlightBuiltins=1      " Highlight Clojure's builtins
-let vimclojure#ParenRainbow=1           " Rainbow parentheses'!
-" NOTE(harry) VimClojure is not currently set up to have the online 'Nailgun' functionality; see
-" http://blog.darevay.com/2010/10/how-i-tamed-vimclojure/ for set-up instructions.
+" Settings for VimClojure taken from https://github.com/daveray/vimclojure-easy
+let vimclojure#FuzzyIndent=1
+let vimclojure#HighlightBuiltins=1
+let vimclojure#HighlightContrib=1
+let vimclojure#DynamicHighlighting=1
+let vimclojure#ParenRainbow=1
+let vimclojure#WantNailgun = 1
+let vimclojure#NailgunClient = $HOME . "/.vim/vimclojure_lib/vimclojure-nailgun-client/ng"
 
 " Turn off annoying backup and swap files
 set nobackup
