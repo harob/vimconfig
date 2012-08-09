@@ -133,8 +133,6 @@ set laststatus=2
 set number
 set undofile
 
-let mapleader = ","
-
 nnoremap / /\v
 vnoremap / /\v
 set ignorecase
@@ -183,6 +181,9 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 nnoremap ; :
+
+let mapleader = ","
+let maplocalleader = "'"
 
 "au FocusLost * :wa
 
