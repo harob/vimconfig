@@ -112,6 +112,6 @@
 [submodule "bundle/vim-addon-mw-utils"]
 	path = bundle/vim-addon-mw-utils
 	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
-[submodule "bundle/snippets"]
-	path = bundle/snippets
-	url = https://github.com/honza/snipmate-snippets.git
+[submodule "bundle/snipmate-snippets"]
+	path = bundle/snipmate-snippets
+	url = git@github.com:harob/snipmate-snippets.git
