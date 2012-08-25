@@ -115,6 +115,3 @@
 [submodule "bundle/snipmate-snippets"]
 	path = bundle/snipmate-snippets
 	url = git@github.com:harob/snipmate-snippets.git
-[submodule "supertab"]
-	path = supertab
-	url = https://github.com/ervandew/supertab.git
