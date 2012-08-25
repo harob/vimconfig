@@ -308,7 +308,7 @@ let vimclojure#WantNailgun = 1
 let vimclojure#NailgunClient = $HOME . "/.vim/vimclojure_lib/vimclojure-nailgun-client/ng"
 
 let vimclojure#SplitPos = "bottom"
-let vimclojure#SplitSize = 10
+let vimclojure#SplitSize = 30
 
 " Turn off annoying backup and swap files
 set nobackup
@@ -323,4 +323,8 @@ map <F6> :call BarkeepForLine()<CR>
 
 " Fix autoclose for lisp quoting. Taken from https://gist.github.com/3016992
 autocmd FileType lisp,clojure let b:AutoClosePairs = AutoClose#DefaultPairsModified("", "'")
+
+" Supertab
+let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
