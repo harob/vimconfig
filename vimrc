@@ -272,9 +272,10 @@ endfunction
 
 " All new
 
-set t_Co=16
-set background=dark
-colors ir_black
+set t_Co=256
+"set background=dark
+"colors ir_black
+colors jellybeans
 
 let g:CommandTMaxFiles=40000
 let g:CommandTAlwaysShowDotFiles=1

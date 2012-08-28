@@ -3,7 +3,7 @@ set guifont=Consolas:h14
 set go-=T
 set linespace=0
 
-colors jellybeans
+"colors jellybeans
 
 hi ColorColumn guibg=#444444
 
