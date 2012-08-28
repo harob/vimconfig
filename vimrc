@@ -275,7 +275,10 @@ endfunction
 set t_Co=256
 "set background=dark
 "colors ir_black
-colors jellybeans
+"colors jellybeans
+"colors molokai
+"colors dusk
+colors Tomorrow-Night-Bright
 
 let g:CommandTMaxFiles=40000
 let g:CommandTAlwaysShowDotFiles=1
