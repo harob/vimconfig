@@ -356,7 +356,9 @@ call s:X("Function","fad07a","","","Yellow","")
 call s:X("Statement","8197bf","","","DarkBlue","")
 call s:X("PreProc","8fbfdc","","","LightBlue","")
 
-hi! link Operator Normal
+" Added by Harry!
+"hi! link Operator Normal
+call s:X("Operator","c6b6ee","","","LightCyan","")
 
 call s:X("Type","ffb964","","","Yellow","")
 call s:X("NonText","606060",g:jellybeans_background_color,"",s:termBlack,"")
