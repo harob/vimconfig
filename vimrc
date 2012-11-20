@@ -169,11 +169,6 @@ inoremap <right> <nop>
 nnoremap j gj
 nnoremap k gk
 
-nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR> " Remove trailing whitespace
-nnoremap <leader>a :Ack 
-nnoremap <leader>v <C-w>v<C-w>l " Open a new vertical pane and go to it
-nnoremap <leader>h <C-w>s<C-w>j " Open a new horizontal pane and go to it
-
 " Navigate between panes
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
@@ -184,6 +179,11 @@ nnoremap ; :
 
 let mapleader = ","
 let maplocalleader = "'"
+
+nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR> " Remove trailing whitespace
+nnoremap <leader>a :Ack 
+nnoremap <leader>v <C-w>v<C-w>l " Open a new vertical pane and go to it
+nnoremap <leader>h <C-w>s<C-w>j " Open a new horizontal pane and go to it
 
 "au FocusLost * :wa
 
@@ -333,3 +333,6 @@ let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
 nmap <silent> <leader>sv :so $HOME/.vimrc<CR>
+
+" Line wrap
+set whichwrap+=<,>,h,l,[,]

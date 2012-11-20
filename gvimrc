@@ -1,5 +1,5 @@
 "set guifont=Droid\ Sans\ Mono:h13
-set guifont=Consolas:h14
+set guifont=Consolas:h15
 set go-=T
 set linespace=0
 
