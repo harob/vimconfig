@@ -118,3 +118,6 @@
 [submodule "bundle/markdown"]
 	path = bundle/markdown
 	url = https://github.com/tpope/vim-markdown.git
+[submodule "bundle/json-syntax"]
+	path = bundle/json-syntax
+	url = https://github.com/helino/vim-json.git
