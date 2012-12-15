@@ -70,9 +70,6 @@
 [submodule "bundle/css_color"]
 	path = bundle/css_color
 	url = https://github.com/vim-scripts/css_color.vim.git
-[submodule "bundle/closetag"]
-	path = bundle/closetag
-	url = https://github.com/vim-scripts/closetag.vim.git
 [submodule "bundle/slime"]
 	path = bundle/slime
 	url = https://github.com/jpalardy/vim-slime.git
