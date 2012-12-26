@@ -314,6 +314,10 @@ let vimclojure#NailgunClient = $HOME . "/.vim/vimclojure_lib/vimclojure-nailgun-
 let vimclojure#SplitPos = "bottom"
 let vimclojure#SplitSize = 30
 
+" Correctly indent compojure and korma macros
+let g:vimclojure#FuzzyIndent = 1
+let g:vimclojure#FuzzyIndentPatterns = ",GET,POST,PUT,DELETE,select,insert,update,delete,with,with-object,fact,facts,defroutes"
+
 " Turn off annoying backup and swap files
 set nobackup
 set nowritebackup
