@@ -245,11 +245,6 @@ function! VisualSearch(direction) range
     let @" = l:saved_reg
 endfunction
 
-" Bash like keys for the command line
-cnoremap <C-A>      <Home>
-cnoremap <C-E>      <End>
-cnoremap <C-K>      <C-U>
-
 " Always show the statusline
 set laststatus=2
 
@@ -316,7 +311,7 @@ let vimclojure#SplitSize = 30
 
 " Correctly indent compojure and korma macros
 let g:vimclojure#FuzzyIndent = 1
-let g:vimclojure#FuzzyIndentPatterns = ",GET,POST,PUT,DELETE,select,insert,update,delete,with,with-object,fact,facts,defroutes"
+let g:vimclojure#FuzzyIndentPatterns = ",GET,POST,PUT,DELETE,select,insert,update,delete,with,with-object,fact,facts,defroutes,defsnippet,deftemplate"
 
 " Turn off annoying backup and swap files
 set nobackup
@@ -324,10 +319,10 @@ set nowritebackup
 set noswapfile
 
 " Barkeep integration
-function! BarkeepForLine()
-  let ignoredoutput = system("git blame " . expand("%") . " -L " . line(".") . "," . line(".") .  "| cut -d' ' -f 1 | sed 's#^#http://barkeep.sv2/commits/'`git config remote.origin.url | xargs basename | sed 's/.git$//'`'/#' | xargs open")
-endfunction
-map <F6> :call BarkeepForLine()<CR>
+"function! BarkeepForLine()
+  "let ignoredoutput = system("git blame " . expand("%") . " -L " . line(".") . "," . line(".") .  "| cut -d' ' -f 1 | sed 's#^#http://barkeep.sv2/commits/'`git config remote.origin.url | xargs basename | sed 's/.git$//'`'/#' | xargs open")
+"endfunction
+"map <F6> :call BarkeepForLine()<CR>
 
 " Fix autoclose for lisp quoting. Taken from https://gist.github.com/3016992
 autocmd FileType lisp,clojure let b:AutoClosePairs = AutoClose#DefaultPairsModified("", "'")
@@ -340,3 +335,12 @@ nmap <silent> <leader>sv :so $HOME/.vimrc<CR>
 
 " Line wrap
 set whichwrap+=<,>,h,l,[,]
+
+" Hack to get around annoying interaction between vim and guard
+"autocmd BufEnter handler.clj edit \| set filetype=clojure<CR>
+
+" Make vim break autocompleted words on /'s
+set iskeyword-=\/
+
+" Have command-t ignore build files
+:set wildignore+=*.o,*.class

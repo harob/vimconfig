@@ -121,3 +121,6 @@
 [submodule "bundle/ragtag"]
 	path = bundle/ragtag
 	url = https://github.com/tpope/vim-ragtag.git
+[submodule "bundle/rsi"]
+	path = bundle/rsi
+	url = https://github.com/tpope/vim-rsi
