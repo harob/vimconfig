@@ -297,20 +297,17 @@ endif
 " Turn off annoying bak files
 set nobackup
 
-" Settings for VimClojure taken from https://github.com/daveray/vimclojure-easy
-let vimclojure#FuzzyIndent=1
-let vimclojure#HighlightBuiltins=1
-let vimclojure#HighlightContrib=1
-let vimclojure#DynamicHighlighting=1
-let vimclojure#ParenRainbow=1
-"let vimclojure#WantNailgun = 1
-"let vimclojure#NailgunClient = $HOME . "/.vim/vimclojure_lib/vimclojure-nailgun-client/ng"
+" Vim-clojure-static: Correctly indent compojure and korma macros
+let g:clojure_fuzzy_indent_patterns = "with.*,def.*,let.*,GET,POST,PUT,DELETE,select,insert,update,delete,with.*,fact,facts"
 
-"let vimclojure#SplitPos = "bottom"
-"let vimclojure#SplitSize = 30
+" Rainbow_parentheses settings
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 
-" Correctly indent compojure and korma macros
-let g:vimclojure#FuzzyIndentPatterns = ",GET,POST,PUT,DELETE,select,insert,update,delete,with,with-object,fact,facts,defroutes,defsnippet,deftemplate"
+" Foreplay (vim clojure repl support) settings
+set viminfo+=!
 
 " Turn off annoying backup and swap files
 set nobackup

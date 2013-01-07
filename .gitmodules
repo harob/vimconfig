@@ -124,3 +124,12 @@
 [submodule "bundle/capslock"]
 	path = bundle/capslock
 	url = git://github.com/tpope/vim-capslock.git
+[submodule "bundle/foreplay"]
+	path = bundle/foreplay
+	url = https://github.com/tpope/vim-foreplay.git
+[submodule "bundle/vim-clojure-static"]
+	path = bundle/vim-clojure-static
+	url = https://github.com/guns/vim-clojure-static.git
+[submodule "bundle/rainbow_parentheses"]
+	path = bundle/rainbow_parentheses
+	url = https://github.com/kien/rainbow_parentheses.vim.git
