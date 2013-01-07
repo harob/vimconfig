@@ -303,14 +303,13 @@ let vimclojure#HighlightBuiltins=1
 let vimclojure#HighlightContrib=1
 let vimclojure#DynamicHighlighting=1
 let vimclojure#ParenRainbow=1
-let vimclojure#WantNailgun = 1
-let vimclojure#NailgunClient = $HOME . "/.vim/vimclojure_lib/vimclojure-nailgun-client/ng"
+"let vimclojure#WantNailgun = 1
+"let vimclojure#NailgunClient = $HOME . "/.vim/vimclojure_lib/vimclojure-nailgun-client/ng"
 
-let vimclojure#SplitPos = "bottom"
-let vimclojure#SplitSize = 30
+"let vimclojure#SplitPos = "bottom"
+"let vimclojure#SplitSize = 30
 
 " Correctly indent compojure and korma macros
-let g:vimclojure#FuzzyIndent = 1
 let g:vimclojure#FuzzyIndentPatterns = ",GET,POST,PUT,DELETE,select,insert,update,delete,with,with-object,fact,facts,defroutes,defsnippet,deftemplate"
 
 " Turn off annoying backup and swap files

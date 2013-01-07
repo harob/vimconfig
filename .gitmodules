@@ -58,9 +58,6 @@
 [submodule "bundle/screen"]
 	path = bundle/screen
 	url = https://github.com/ervandew/screen.git
-[submodule "bundle/VimClojure"]
-	path = bundle/VimClojure
-	url = https://github.com/vim-scripts/VimClojure.git
 [submodule "bundle/less-syntax"]
 	path = bundle/less-syntax
 	url = https://github.com/jkimbo/vim-less.git
@@ -124,3 +121,6 @@
 [submodule "bundle/rsi"]
 	path = bundle/rsi
 	url = https://github.com/tpope/vim-rsi
+[submodule "bundle/capslock"]
+	path = bundle/capslock
+	url = git://github.com/tpope/vim-capslock.git
