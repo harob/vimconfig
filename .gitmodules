@@ -133,3 +133,6 @@
 [submodule "bundle/rainbow_parentheses"]
 	path = bundle/rainbow_parentheses
 	url = https://github.com/kien/rainbow_parentheses.vim.git
+[submodule "bundle/classpath"]
+	path = bundle/classpath
+	url = https://github.com/tpope/vim-classpath.git
