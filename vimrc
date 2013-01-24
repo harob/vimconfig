@@ -1,14 +1,5 @@
-
-" An example for a vimrc file.
-"
-" Maintainer:	Bram Moolenaar <Bram@vim.org>
-" Last change:	2008 Jul 02
-"
-" To use it, copy it to
-"     for Unix and OS/2:  ~/.vimrc
-"	      for Amiga:  s:.vimrc
-"  for MS-DOS and Win32:  $VIM\_vimrc
-"	    for OpenVMS:  sys$login:.vimrc
+" Boiler-plate
+" ============
 
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
@@ -95,10 +86,9 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 
-" END OF SAMPLE FILE
 
-
-" Lines from http://stevelosh.com/blog/2010/09/coming-home-to-vim/
+" From Steve Losh's blog (at http://stevelosh.com/blog/2010/09/coming-home-to-vim/)
+" ======================
 
 filetype off
 call pathogen#helptags()
@@ -182,12 +172,13 @@ let maplocalleader = "'"
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR> " Remove trailing whitespace
 nnoremap <leader>a :Ack 
 nnoremap <leader>v <C-w>v<C-w>l " Open a new vertical pane and go to it
+nnoremap <leader>\| <C-w>v<C-w>l
 nnoremap <leader>h <C-w>s<C-w>j " Open a new horizontal pane and go to it
+nnoremap <leader>- <C-w>s<C-w>j
 
-"au FocusLost * :wa
 
-
-" From Caleb's vimrc at https://github.com/cespare/vim-config
+" From Caleb's vimrc (at https://github.com/cespare/vim-config)
+" ==================
 
 hi ColorColumn ctermbg=darkgray
 
@@ -210,6 +201,7 @@ nnoremap S d$O<ESC>p==
 
 
 " From http://amix.dk/vim/vimrc.html
+" ==================================
 
 "  In visual mode when you press * or # to search for the current selection
 vnoremap <silent> * :call VisualSearch('f')<CR>
@@ -259,14 +251,11 @@ endfunction
 
 
 " All new
+" =======
 
 set t_Co=256
-"set background=dark
-"colors ir_black
+" Other schemes: ir_black, molokai, dusk, Tomorrow-Night-Bright
 colors jellybeans
-"colors molokai
-"colors dusk
-"colors Tomorrow-Night-Bright
 
 let g:CommandTMaxFiles=40000
 let g:CommandTAlwaysShowDotFiles=1
@@ -289,9 +278,6 @@ endif
 
 " Turn off annoying bak files
 set nobackup
-
-" Vim-clojure-static: Correctly indent compojure and korma macros
-let g:clojure_fuzzy_indent_patterns = "with.*,def.*,let.*,GET,POST,PUT,DELETE,select,insert,update,delete,with.*,fact,facts,up,down,alter,table,context"
 
 " Rainbow_parentheses settings
 let g:rbpt_max = 10
@@ -320,22 +306,10 @@ augroup rainbow_parentheses
   au Syntax * RainbowParenthesesLoadBraces
 augroup end
 
-" Foreplay (vim clojure repl support) settings
-set viminfo+=!
-
 " Turn off annoying backup and swap files
 set nobackup
 set nowritebackup
 set noswapfile
-
-" Barkeep integration
-"function! BarkeepForLine()
-  "let ignoredoutput = system("git blame " . expand("%") . " -L " . line(".") . "," . line(".") .  "| cut -d' ' -f 1 | sed 's#^#http://barkeep.sv2/commits/'`git config remote.origin.url | xargs basename | sed 's/.git$//'`'/#' | xargs open")
-"endfunction
-"map <F6> :call BarkeepForLine()<CR>
-
-" Fix autoclose for lisp quoting. Taken from https://gist.github.com/3016992
-autocmd FileType lisp,clojure let b:AutoClosePairs = AutoClose#DefaultPairsModified("", "'")
 
 " Supertab
 let g:SuperTabDefaultCompletionType = "context"
@@ -345,6 +319,19 @@ noremap <silent> <leader>sv :so $HOME/.vimrc \| so $HOME/.gvimrc \| call Rainbow
 
 " Line wrap
 set whichwrap+=<,>,h,l,[,]
+
+
+" Clojure-related
+" ---------------
+
+" Foreplay (vim clojure repl support) settings
+set viminfo+=!
+
+" Fix autoclose for lisp quoting. Taken from https://gist.github.com/3016992
+autocmd FileType lisp,clojure let b:AutoClosePairs = AutoClose#DefaultPairsModified("", "'")
+
+" Vim-clojure-static: Correctly indent compojure and korma macros
+let g:clojure_fuzzy_indent_patterns = "with.*,def.*,let.*,GET,POST,PUT,DELETE,select,insert,update,delete,with.*,fact,facts,up,down,alter,table,context"
 
 " Hack to get around annoying interaction between vim and guard
 "autocmd BufEnter handler.clj edit \| set filetype=clojure
