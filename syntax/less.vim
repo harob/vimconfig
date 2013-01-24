@@ -1,0 +1,1 @@
+../bundle/css_color/syntax/css.vim

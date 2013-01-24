@@ -67,8 +67,7 @@ if has("autocmd")
   augroup vimrcEx
   au!
 
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
+  autocmd FileType text setlocal textwidth=110
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
@@ -219,12 +218,6 @@ vnoremap <silent> # :call VisualSearch('b')<CR>
 " When you press gv you vimgrep after the selected text
 vnoremap <silent> gv :call VisualSearch('gv')<CR>
 
-function! CmdLine(str)
-    exe "menu Foo.Bar :" . a:str
-    emenu Foo.Bar
-    unmenu Foo
-endfunction
-
 " From an idea by Michael Naumann
 function! VisualSearch(direction) range
     let l:saved_reg = @"
@@ -298,13 +291,34 @@ endif
 set nobackup
 
 " Vim-clojure-static: Correctly indent compojure and korma macros
-let g:clojure_fuzzy_indent_patterns = "with.*,def.*,let.*,GET,POST,PUT,DELETE,select,insert,update,delete,with.*,fact,facts"
+let g:clojure_fuzzy_indent_patterns = "with.*,def.*,let.*,GET,POST,PUT,DELETE,select,insert,update,delete,with.*,fact,facts,up,down,alter,table,context"
 
 " Rainbow_parentheses settings
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+let g:rbpt_max = 10
+let g:rbpt_colorpairs = [
+    \ ['gray',      'HotPink1'],
+    \ ['darkred',   'cyan1'],
+    \ ['darkcyan',  'brown1'],
+    \ ['darkgreen', 'yellow1'],
+    \ ['darkblue',  'MediumOrchid'],
+    \ ['gray',      'DeepSkyBlue1'],
+    \ ['darkred',   'DarkOrange1'],
+    \ ['darkcyan',  'LimeGreen'],
+    \ ['darkgreen', 'goldenrod1'],
+    \ ['darkblue',  'RoyalBlue1'],
+    \ ]
+function! RainbowParenthesesReset()
+  RainbowParenthesesToggle
+  RainbowParenthesesLoadRound
+  RainbowParenthesesLoadSquare
+  RainbowParenthesesLoadBraces
+endfunction
+augroup rainbow_parentheses
+  au VimEnter * RainbowParenthesesToggle
+  au Syntax * RainbowParenthesesLoadRound
+  au Syntax * RainbowParenthesesLoadSquare
+  au Syntax * RainbowParenthesesLoadBraces
+augroup end
 
 " Foreplay (vim clojure repl support) settings
 set viminfo+=!
@@ -327,13 +341,13 @@ autocmd FileType lisp,clojure let b:AutoClosePairs = AutoClose#DefaultPairsModif
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
-nmap <silent> <leader>sv :so $HOME/.vimrc<CR>
+noremap <silent> <leader>sv :so $HOME/.vimrc \| so $HOME/.gvimrc \| call RainbowParenthesesReset() \| call RainbowParenthesesReset()<CR>
 
 " Line wrap
 set whichwrap+=<,>,h,l,[,]
 
 " Hack to get around annoying interaction between vim and guard
-"autocmd BufEnter handler.clj edit \| set filetype=clojure<CR>
+"autocmd BufEnter handler.clj edit \| set filetype=clojure
 
 " Make vim break autocompleted words on /'s
 set iskeyword-=\/
