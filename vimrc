@@ -131,8 +131,8 @@ set incsearch
 set showmatch
 set hlsearch
 nnoremap <leader><space> :noh<cr>
-nnoremap <tab> %
-vnoremap <tab> %
+nmap <tab> % " Map rather than noremap so that tab will work with %-extenders
+vmap <tab> %
 
 "set wrap
 "set textwidth=79
@@ -165,6 +165,7 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 nnoremap ; :
+vnoremap ; :
 
 let mapleader = ","
 let maplocalleader = "'"
@@ -312,13 +313,22 @@ set nowritebackup
 set noswapfile
 
 " Supertab
-let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabContextDefaultCompletionType = "<c-n>"
+let g:SuperTabDefaultCompletionType="<c-x><c-u>"
+autocmd FileType clojure setlocal omnifunc=foreplay#omnicomplete
+autocmd FileType *
+    \ if &omnifunc != '' |
+    \   call SuperTabChain(&omnifunc, '<c-n>') |
+    \ endif
 
 noremap <silent> <leader>sv :so $HOME/.vimrc \| so $HOME/.gvimrc \| call RainbowParenthesesReset() \| call RainbowParenthesesReset()<CR>
 
 " Line wrap
 set whichwrap+=<,>,h,l,[,]
+
+" Ctrl-p
+let g:ctrlp_working_path_mode=2 " Search for files in repository with CtrlP
+let g:ctrlp_map = '<leader>t'
+let g:ctrlp_custom_ignore = '\.git$\|\.DS_Store$'
 
 
 " Clojure-related
@@ -330,8 +340,14 @@ set viminfo+=!
 " Fix autoclose for lisp quoting. Taken from https://gist.github.com/3016992
 autocmd FileType lisp,clojure let b:AutoClosePairs = AutoClose#DefaultPairsModified("", "'")
 
-" Vim-clojure-static: Correctly indent compojure and korma macros
-let g:clojure_fuzzy_indent_patterns = "with.*,def.*,let.*,GET,POST,PUT,DELETE,select,insert,update,delete,with.*,fact,facts,up,down,alter,table,context"
+" Vim-clojure-static: Correctly indent compojure and korma macros, etc.
+let g:clojure_fuzzy_indent_patterns = "with.*,def.*,let.*,send.*,if.*,when.*"
+let g:clojure_fuzzy_indent_patterns .= ",GET,POST,PUT,PATCH,DELETE,context"          " Compojure
+let g:clojure_fuzzy_indent_patterns .= ",clone-for"                                  " Enlive
+let g:clojure_fuzzy_indent_patterns .= ",select.*,insert.*,update.*,delete.*,with.*" " Korma
+let g:clojure_fuzzy_indent_patterns .= ",fact,facts"                                 " Midje
+let g:clojure_fuzzy_indent_patterns .= ",up,down,alter,table"                        " Lobos
+let g:clojure_fuzzy_indent_patterns .= ",match"                                      " Misc
 
 " Hack to get around annoying interaction between vim and guard
 "autocmd BufEnter handler.clj edit \| set filetype=clojure
@@ -340,4 +356,4 @@ let g:clojure_fuzzy_indent_patterns = "with.*,def.*,let.*,GET,POST,PUT,DELETE,se
 set iskeyword-=\/
 
 " Have command-t ignore build files
-:set wildignore+=*.o,*.class
+:set wildignore+=*.o,*.class,*asset-cache*

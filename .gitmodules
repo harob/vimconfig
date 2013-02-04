@@ -73,9 +73,6 @@
 [submodule "bundle/vitality"]
 	path = bundle/vitality
 	url = https://github.com/sjl/vitality.vim.git
-[submodule "bundle/command-t"]
-	path = bundle/command-t
-	url = https://github.com/wincent/Command-T.git
 [submodule "bundle/snipmate"]
 	path = bundle/snipmate
 	url = git://github.com/garbas/vim-snipmate.git
@@ -118,3 +115,12 @@
 [submodule "bundle/classpath"]
 	path = bundle/classpath
 	url = https://github.com/tpope/vim-classpath.git
+[submodule "bundle/vim-coffee-script"]
+	path = bundle/vim-coffee-script
+	url = https://github.com/kchmck/vim-coffee-script.git
+[submodule "bundle/syntastic"]
+	path = bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git
+[submodule "bundle/ctrlp"]
+	path = bundle/ctrlp
+	url = https://github.com/kien/ctrlp.vim.git
