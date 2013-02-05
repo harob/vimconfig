@@ -6,4 +6,3 @@ augroup filetypedetect
   au BufNewFile,BufRead *.mxml setfiletype mxml " MXML files
   au BufNewFile,BufRead *.md setfiletype markdown
 augroup END
-

@@ -315,6 +315,7 @@ set noswapfile
 " Supertab
 let g:SuperTabDefaultCompletionType="<c-x><c-u>"
 autocmd FileType clojure setlocal omnifunc=foreplay#omnicomplete
+autocmd FileType coffee setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType *
     \ if &omnifunc != '' |
     \   call SuperTabChain(&omnifunc, '<c-n>') |
@@ -326,9 +327,10 @@ noremap <silent> <leader>sv :so $HOME/.vimrc \| so $HOME/.gvimrc \| call Rainbow
 set whichwrap+=<,>,h,l,[,]
 
 " Ctrl-p
-let g:ctrlp_working_path_mode=2 " Search for files in repository with CtrlP
+let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_map = '<leader>t'
 let g:ctrlp_custom_ignore = '\.git$\|\.DS_Store$'
+let g:ctrlp_match_window_reversed = 0
 
 
 " Clojure-related
