@@ -331,6 +331,7 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_map = '<leader>t'
 let g:ctrlp_custom_ignore = '\.git$\|\.DS_Store$'
 let g:ctrlp_match_window_reversed = 0
+let g:ctrlp_switch_buffer = 'H' " Only jump to an existing buffer when c-x is pressed.
 
 
 " Clojure-related
@@ -343,7 +344,7 @@ set viminfo+=!
 autocmd FileType lisp,clojure let b:AutoClosePairs = AutoClose#DefaultPairsModified("", "'")
 
 " Vim-clojure-static: Correctly indent compojure and korma macros, etc.
-let g:clojure_fuzzy_indent_patterns = "with.*,def.*,let.*,send.*,if.*,when.*"
+let g:clojure_fuzzy_indent_patterns = "with.*,def.*,let.*,send.*,if.*,when.*,partition"
 let g:clojure_fuzzy_indent_patterns .= ",GET,POST,PUT,PATCH,DELETE,context"          " Compojure
 let g:clojure_fuzzy_indent_patterns .= ",clone-for"                                  " Enlive
 let g:clojure_fuzzy_indent_patterns .= ",select.*,insert.*,update.*,delete.*,with.*" " Korma
@@ -359,3 +360,7 @@ set iskeyword-=\/
 
 " Have command-t ignore build files
 :set wildignore+=*.o,*.class,*asset-cache*
+
+" vim-gitgutter settings
+highlight clear SignColumn
+"let g:gitgutter_enabled = 0
