@@ -103,9 +103,6 @@
 [submodule "bundle/capslock"]
 	path = bundle/capslock
 	url = git://github.com/tpope/vim-capslock.git
-[submodule "bundle/foreplay"]
-	path = bundle/foreplay
-	url = https://github.com/tpope/vim-foreplay.git
 [submodule "bundle/vim-clojure-static"]
 	path = bundle/vim-clojure-static
 	url = https://github.com/guns/vim-clojure-static.git
@@ -127,3 +124,6 @@
 [submodule "bundle/vim-gitgutter"]
 	path = bundle/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter.git
+[submodule "bundle/fireplace"]
+	path = bundle/fireplace
+	url = https://github.com/tpope/vim-fireplace.git
