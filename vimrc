@@ -171,7 +171,7 @@ let mapleader = ","
 let maplocalleader = "'"
 
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR> " Remove trailing whitespace
-nnoremap <leader>a :Ack 
+nnoremap <leader>a :Ack
 nnoremap <leader>v <C-w>v<C-w>l " Open a new vertical pane and go to it
 nnoremap <leader>\| <C-w>v<C-w>l
 nnoremap <leader>h <C-w>s<C-w>j " Open a new horizontal pane and go to it
@@ -314,7 +314,7 @@ set noswapfile
 
 " Supertab
 let g:SuperTabDefaultCompletionType="<c-x><c-u>"
-autocmd FileType clojure setlocal omnifunc=foreplay#omnicomplete
+autocmd FileType clojure setlocal omnifunc=fireplace#omnicomplete
 autocmd FileType coffee setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType *
     \ if &omnifunc != '' |
@@ -325,6 +325,8 @@ noremap <silent> <leader>sv :so $HOME/.vimrc \| so $HOME/.gvimrc \| call Rainbow
 
 " Line wrap
 set whichwrap+=<,>,h,l,[,]
+set textwidth=0
+set wrapmargin=0
 
 " Ctrl-p
 let g:ctrlp_working_path_mode = 'ra'
@@ -333,11 +335,20 @@ let g:ctrlp_custom_ignore = '\.git$\|\.DS_Store$'
 let g:ctrlp_match_window_reversed = 0
 let g:ctrlp_switch_buffer = 'H' " Only jump to an existing buffer when c-x is pressed.
 
+" Quickly display a markdown preview of the current buffer
+:map <leader>md :%w ! markdown_doctor \| bcat<CR><CR>
+
+" Strip trailing whitespace on save
+augroup trailing_whitespace
+  autocmd!
+  autocmd BufWritePre * :%s/\s\+$//e
+augroup end
+
 
 " Clojure-related
 " ---------------
 
-" Foreplay (vim clojure repl support) settings
+" Fireplace (vim clojure repl support) settings
 set viminfo+=!
 
 " Fix autoclose for lisp quoting. Taken from https://gist.github.com/3016992
@@ -350,7 +361,7 @@ let g:clojure_fuzzy_indent_patterns .= ",clone-for"                             
 let g:clojure_fuzzy_indent_patterns .= ",select.*,insert.*,update.*,delete.*,with.*" " Korma
 let g:clojure_fuzzy_indent_patterns .= ",fact,facts"                                 " Midje
 let g:clojure_fuzzy_indent_patterns .= ",up,down,alter,table"                        " Lobos
-let g:clojure_fuzzy_indent_patterns .= ",match"                                      " Misc
+let g:clojure_fuzzy_indent_patterns .= ",check,match,url-of-form"                    " Misc
 
 " Hack to get around annoying interaction between vim and guard
 "autocmd BufEnter handler.clj edit \| set filetype=clojure
