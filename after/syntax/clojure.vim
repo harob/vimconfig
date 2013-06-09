@@ -1,1 +1,1 @@
-syn keyword clojureMacro def-
+syn keyword clojureMacro def- -?> -?>>

@@ -58,7 +58,7 @@ if has("autocmd")
   augroup vimrcEx
   au!
 
-  autocmd FileType text setlocal textwidth=110
+  "autocmd FileType text setlocal textwidth=110
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
@@ -135,7 +135,7 @@ nmap <tab> % " Map rather than noremap so that tab will work with %-extenders
 vmap <tab> %
 
 "set wrap
-"set textwidth=79
+set textwidth=110
 "set formatoptions=qrn1
 set colorcolumn=110
 "hi ColorColumn guibg=#444444
@@ -323,11 +323,6 @@ autocmd FileType *
 
 noremap <silent> <leader>sv :so $HOME/.vimrc \| so $HOME/.gvimrc \| call RainbowParenthesesReset() \| call RainbowParenthesesReset()<CR>
 
-" Line wrap
-set whichwrap+=<,>,h,l,[,]
-set textwidth=0
-set wrapmargin=0
-
 " Ctrl-p
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_map = '<leader>t'
@@ -343,6 +338,13 @@ augroup trailing_whitespace
   autocmd!
   autocmd BufWritePre * :%s/\s\+$//e
 augroup end
+
+" Turn off auto line wrapping
+:set formatoptions-=t
+
+" Better handle bulleted lists
+set formatoptions+=n
+set formatlistpat=^\\s*[0-9*]\\+[\\]:.)}\\t\ ]\\s*
 
 
 " Clojure-related
