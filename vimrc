@@ -262,9 +262,13 @@ set formatoptions-=t
 set formatoptions-=c
 
 " Better handle bulleted lists. Inspired by http://stackoverflow.com/a/1047850
+" You can use C-t and C-d to indent and dedent in insert mode.
 set formatoptions+=nqro
 set comments-=fb:-
 set comments+=n:*,n:-
+
+" vim-gitgutter settings
+highlight clear SignColumn
 
 
 " Clojure-related
@@ -321,7 +325,3 @@ set iskeyword-=\/
 
 " Have command-t ignore build files
 :set wildignore+=*.o,*.class,*asset-cache*
-
-" vim-gitgutter settings
-highlight clear SignColumn
-"let g:gitgutter_enabled = 0
