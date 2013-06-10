@@ -6,25 +6,9 @@ if v:progname =~? "evim"
   finish
 endif
 
-" Use Vim settings, rather then Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-set nocompatible
+set backspace=indent,eol,start " allow backspacing over everything in insert mode
 
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
-
-if has("vms")
-  set nobackup		" do not keep a backup file, use versions instead
-else
-  set backup		" keep a backup file
-endif
-set history=50		" keep 50 lines of command line history
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
-set incsearch		" do incremental searching
-
-" For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
-" let &guioptions = substitute(&guioptions, "t", "", "g")
+set history=50 " keep 50 lines of command line history
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
@@ -45,46 +29,15 @@ if &t_Co > 2 || has("gui_running")
   set hlsearch
 endif
 
-" Only do this part when compiled with support for autocommands.
-if has("autocmd")
-
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
-
-  " Put these in an autocmd group, so that we can delete them easily.
-  augroup vimrcEx
-  au!
-
-  "autocmd FileType text setlocal textwidth=110
-
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  " Also don't do it when the mark is in the first line, that is the default
-  " position when opening a file.
-  autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
-
-  augroup END
-
-else
-
-  set autoindent		" always set autoindenting on
-
-endif " has("autocmd")
-
-" Convenient command to see the difference between the current buffer and the
-" file it was loaded from, thus the changes you made.
-" Only define it when not defined already.
-if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
-endif
+" When editing a file, always jump to the last known cursor position.
+" Don't do it when the position is invalid or when inside an event handler
+" (happens when dropping a file on gvim).
+" Also don't do it when the mark is in the first line, that is the default
+" position when opening a file.
+autocmd BufReadPost *
+  \ if line("'\"") > 1 && line("'\"") <= line("$") |
+  \   exe "normal! g`\"" |
+  \ endif
 
 
 " From Steve Losh's blog (at http://stevelosh.com/blog/2010/09/coming-home-to-vim/)
@@ -170,11 +123,12 @@ vnoremap ; :
 let mapleader = ","
 let maplocalleader = "'"
 
-nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR> " Remove trailing whitespace
-nnoremap <leader>a :Ack
-nnoremap <leader>v <C-w>v<C-w>l " Open a new vertical pane and go to it
+nnoremap <leader>a :Ack ""<left>
+" Open a new vertical pane and go to it:
+nnoremap <leader>v <C-w>v<C-w>l
 nnoremap <leader>\| <C-w>v<C-w>l
-nnoremap <leader>h <C-w>s<C-w>j " Open a new horizontal pane and go to it
+" Open a new horizontal pane and go to it:
+nnoremap <leader>h <C-w>s<C-w>j
 nnoremap <leader>- <C-w>s<C-w>j
 
 
@@ -234,8 +188,8 @@ endfunction
 " Always show the statusline
 set laststatus=2
 
-" Format the statusline
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ %=\ %c\ :\ %l\ /\ %L,\ %P
+" Original statusline - this has been superseded by Powerbar
+"set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ %=\ %c\ :\ %l\ /\ %L,\ %P
 
 function! CurDir()
     let curdir = substitute(getcwd(), '/Users/harry/', "~/", "g")
@@ -258,10 +212,6 @@ set t_Co=256
 " Other schemes: ir_black, molokai, dusk, Tomorrow-Night-Bright
 colors jellybeans
 
-let g:CommandTMaxFiles=40000
-let g:CommandTAlwaysShowDotFiles=1
-let g:CommandTMaxHeight=20
-
 " From http://stackoverflow.com/questions/2968548/vim-return-to-command-mode-when-focus-is-lost
 autocmd FocusLost,TabLeave * call PopOutOfInsertMode()
 function! PopOutOfInsertMode()
@@ -277,8 +227,63 @@ if !isdirectory($HOME . "/.vim/tmp")
   call system("mkdir -p ~/.vim/tmp/undo")
 endif
 
-" Turn off annoying bak files
+" Turn off annoying backup and swap files
 set nobackup
+set nowritebackup
+set noswapfile
+
+" Supertab
+let g:SuperTabDefaultCompletionType="<c-x><c-u>"
+autocmd FileType clojure setlocal omnifunc=fireplace#omnicomplete
+autocmd FileType clojure call SuperTabChain(&omnifunc, '<c-n>')
+autocmd FileType coffee setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType coffee call SuperTabChain(&omnifunc, '<c-n>')
+
+noremap <silent> <leader>sv :so $HOME/.vimrc \| so $HOME/.gvimrc \| call RainbowParenthesesReset()<CR>
+
+" Ctrl-p
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_map = '<leader>t'
+let g:ctrlp_custom_ignore = '\.git$\|\.DS_Store$'
+let g:ctrlp_match_window_reversed = 0
+let g:ctrlp_switch_buffer = 'H' " Only jump to an existing buffer when c-x is pressed.
+
+" Quickly display a markdown preview of the current buffer
+map <leader>md :%w ! markdown_doctor \| bcat<CR><CR>
+
+" Strip trailing whitespace on save
+augroup trailing_whitespace
+  autocmd!
+  autocmd BufWritePre * :%s/\s\+$//e
+augroup end
+
+" Turn off auto line wrapping
+set formatoptions-=t
+set formatoptions-=c
+
+" Better handle bulleted lists. Inspired by http://stackoverflow.com/a/1047850
+set formatoptions+=nqro
+set comments-=fb:-
+set comments+=n:*,n:-
+
+
+" Clojure-related
+" ---------------
+
+" Fireplace (vim clojure repl support) settings
+set viminfo+=!
+
+" Fix autoclose for lisp quoting. Taken from https://gist.github.com/3016992
+autocmd FileType lisp,clojure let b:AutoClosePairs = AutoClose#DefaultPairsModified("", "'")
+
+" Vim-clojure-static: Correctly indent compojure and korma macros, etc.
+let g:clojure_fuzzy_indent_patterns = "with.*,def.*,let.*,send.*,if.*,when.*,partition"
+let g:clojure_fuzzy_indent_patterns .= ",GET,POST,PUT,PATCH,DELETE,context"          " Compojure
+let g:clojure_fuzzy_indent_patterns .= ",clone-for"                                  " Enlive
+let g:clojure_fuzzy_indent_patterns .= ",select.*,insert.*,update.*,delete.*,with.*" " Korma
+let g:clojure_fuzzy_indent_patterns .= ",fact,facts"                                 " Midje
+let g:clojure_fuzzy_indent_patterns .= ",up,down,alter,table"                        " Lobos
+let g:clojure_fuzzy_indent_patterns .= ",check,match,url-of-form"                    " Misc
 
 " Rainbow_parentheses settings
 let g:rbpt_max = 10
@@ -307,64 +312,6 @@ augroup rainbow_parentheses
   autocmd Syntax * RainbowParenthesesLoadSquare
   autocmd Syntax * RainbowParenthesesLoadBraces
 augroup end
-
-" Turn off annoying backup and swap files
-set nobackup
-set nowritebackup
-set noswapfile
-
-" Supertab
-let g:SuperTabDefaultCompletionType="<c-x><c-u>"
-autocmd FileType clojure setlocal omnifunc=fireplace#omnicomplete
-autocmd FileType coffee setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType *
-    \ if &omnifunc != '' |
-    \   call SuperTabChain(&omnifunc, '<c-n>') |
-    \ endif
-
-noremap <silent> <leader>sv :so $HOME/.vimrc \| so $HOME/.gvimrc \| call RainbowParenthesesReset() \| call RainbowParenthesesReset()<CR>
-
-" Ctrl-p
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_map = '<leader>t'
-let g:ctrlp_custom_ignore = '\.git$\|\.DS_Store$'
-let g:ctrlp_match_window_reversed = 0
-let g:ctrlp_switch_buffer = 'H' " Only jump to an existing buffer when c-x is pressed.
-
-" Quickly display a markdown preview of the current buffer
-:map <leader>md :%w ! markdown_doctor \| bcat<CR><CR>
-
-" Strip trailing whitespace on save
-augroup trailing_whitespace
-  autocmd!
-  autocmd BufWritePre * :%s/\s\+$//e
-augroup end
-
-" Turn off auto line wrapping
-:set formatoptions-=t
-
-" Better handle bulleted lists
-set formatoptions+=n
-set formatlistpat=^\\s*[0-9*]\\+[\\]:.)}\\t\ ]\\s*
-
-
-" Clojure-related
-" ---------------
-
-" Fireplace (vim clojure repl support) settings
-set viminfo+=!
-
-" Fix autoclose for lisp quoting. Taken from https://gist.github.com/3016992
-autocmd FileType lisp,clojure let b:AutoClosePairs = AutoClose#DefaultPairsModified("", "'")
-
-" Vim-clojure-static: Correctly indent compojure and korma macros, etc.
-let g:clojure_fuzzy_indent_patterns = "with.*,def.*,let.*,send.*,if.*,when.*,partition"
-let g:clojure_fuzzy_indent_patterns .= ",GET,POST,PUT,PATCH,DELETE,context"          " Compojure
-let g:clojure_fuzzy_indent_patterns .= ",clone-for"                                  " Enlive
-let g:clojure_fuzzy_indent_patterns .= ",select.*,insert.*,update.*,delete.*,with.*" " Korma
-let g:clojure_fuzzy_indent_patterns .= ",fact,facts"                                 " Midje
-let g:clojure_fuzzy_indent_patterns .= ",up,down,alter,table"                        " Lobos
-let g:clojure_fuzzy_indent_patterns .= ",check,match,url-of-form"                    " Misc
 
 " Hack to get around annoying interaction between vim and guard
 "autocmd BufEnter handler.clj edit \| set filetype=clojure
