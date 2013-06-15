@@ -8,7 +8,7 @@ endif
 
 set backspace=indent,eol,start " allow backspacing over everything in insert mode
 
-set history=50 " keep 50 lines of command line history
+set history=1000 " keep 50 lines of command line history
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
@@ -84,7 +84,8 @@ set incsearch
 set showmatch
 set hlsearch
 nnoremap <leader><space> :noh<cr>
-nmap <tab> % " Map rather than noremap so that tab will work with %-extenders
+" Map rather than noremap so that tab will work with %-extenders
+nmap <tab> %
 vmap <tab> %
 
 "set wrap
@@ -139,7 +140,7 @@ hi ColorColumn ctermbg=darkgray
 
 let g:NERDTreeChDirMode=2
 let g:NERDChristmasTree=1
-nmap <leader>n :NERDTreeToggle<CR>
+nmap <leader>n NERDTreeTabsToggle<CR>
 
 " Change where we store swap/undo files
 set dir=~/.vim/tmp/swap//
@@ -239,7 +240,8 @@ autocmd FileType clojure call SuperTabChain(&omnifunc, '<c-n>')
 autocmd FileType coffee setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType coffee call SuperTabChain(&omnifunc, '<c-n>')
 
-noremap <silent> <leader>sv :so $HOME/.vimrc \| so $HOME/.gvimrc \| call RainbowParenthesesReset()<CR>
+nnoremap <leader>ev :edit $HOME/.vimrc<CR>
+nnoremap <leader>sv :source $HOME/.vimrc \| source $HOME/.gvimrc \| call RainbowParenthesesReset()<CR>
 
 " Ctrl-p
 let g:ctrlp_working_path_mode = 'ra'
@@ -262,13 +264,9 @@ set formatoptions-=t
 set formatoptions-=c
 
 " Better handle bulleted lists. Inspired by http://stackoverflow.com/a/1047850
-" You can use C-t and C-d to indent and dedent in insert mode.
 set formatoptions+=nqro
 set comments-=fb:-
 set comments+=n:*,n:-
-
-" vim-gitgutter settings
-highlight clear SignColumn
 
 
 " Clojure-related
