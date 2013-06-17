@@ -140,7 +140,7 @@ hi ColorColumn ctermbg=darkgray
 
 let g:NERDTreeChDirMode=2
 let g:NERDChristmasTree=1
-nmap <leader>n NERDTreeTabsToggle<CR>
+nmap <leader>n :NERDTreeToggle<CR>
 
 " Change where we store swap/undo files
 set dir=~/.vim/tmp/swap//
@@ -267,6 +267,8 @@ set formatoptions-=c
 set formatoptions+=nqro
 set comments-=fb:-
 set comments+=n:*,n:-
+
+let g:gitgutter_eager = 0
 
 
 " Clojure-related
