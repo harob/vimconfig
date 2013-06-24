@@ -140,7 +140,7 @@ hi ColorColumn ctermbg=darkgray
 
 let g:NERDTreeChDirMode=2
 let g:NERDChristmasTree=1
-nmap <leader>n :NERDTreeToggle<CR>
+nmap <leader>n :NERDTreeTabsToggle<CR>
 
 " Change where we store swap/undo files
 set dir=~/.vim/tmp/swap//
