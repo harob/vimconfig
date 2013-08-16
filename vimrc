@@ -236,9 +236,11 @@ set noswapfile
 " Supertab
 let g:SuperTabDefaultCompletionType="<c-x><c-u>"
 autocmd FileType clojure setlocal omnifunc=fireplace#omnicomplete
-autocmd FileType clojure call SuperTabChain(&omnifunc, '<c-n>')
 autocmd FileType coffee setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType coffee call SuperTabChain(&omnifunc, '<c-n>')
+autocmd FileType *
+    \ if &omnifunc != '' |
+    \   call SuperTabChain(&omnifunc, '<c-n>') |
+    \ endif
 
 nnoremap <leader>ev :edit $HOME/.vimrc<CR>
 nnoremap <leader>sv :source $HOME/.vimrc \| source $HOME/.gvimrc \| call RainbowParenthesesReset()<CR>
@@ -269,6 +271,8 @@ set comments-=fb:-
 set comments+=n:*,n:-
 
 let g:gitgutter_eager = 0
+
+nnoremap <leader>b :tabnew<CR>
 
 
 " Clojure-related
@@ -325,3 +329,6 @@ set iskeyword-=\/
 
 " Have command-t ignore build files
 :set wildignore+=*.o,*.class,*asset-cache*
+
+" Evaluate outermost s-expr with fireplace
+:nnoremap cpo :Eval<cr>
